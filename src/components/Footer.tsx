@@ -1,5 +1,6 @@
-import { Linkedin } from 'lucide-react';
-import logo from '@/assets/logo.png';
+import { Linkedin, Send } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import logoWithText from '@/assets/logo-with-text.png';
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
           {/* Column 1: Logo and Tagline */}
           <div className="space-y-4">
             <img 
-              src={logo} 
+              src={logoWithText} 
               alt="The Escape Group" 
               className="h-10 w-auto"
             />
@@ -22,24 +23,24 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-foreground font-semibold">Navigation</h3>
             <div className="space-y-2">
-              <a
-                href="#home"
+              <Link
+                to="/"
                 className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
               >
                 Home
-              </a>
-              <a
-                href="#events"
+              </Link>
+              <Link
+                to="/events"
                 className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
               >
                 Events
-              </a>
-              <a
-                href="#testimonials"
+              </Link>
+              <Link
+                to="/testimonials"
                 className="block text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
               >
                 Testimonials
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -48,23 +49,27 @@ const Footer = () => {
             <h3 className="text-foreground font-semibold">Connect With Us</h3>
             <div className="flex space-x-4">
               <a
-                href="#linkedin"
+                href="https://linkedin.com/company/the-escape-group"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="#telegram"
+                href="https://t.me/theescapegroup"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
                 aria-label="Telegram"
               >
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.787l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
-                </svg>
+                <Send className="h-5 w-5" />
               </a>
               <a
-                href="#instagram"
+                href="https://instagram.com/theescapegroup"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
                 aria-label="Instagram"
               >

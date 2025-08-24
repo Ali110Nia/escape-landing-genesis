@@ -1,8 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Trigger animation after component mounts
@@ -50,6 +52,7 @@ const HeroSection = () => {
           <Button 
             size="lg" 
             className="bg-gradient-primary hover:opacity-90 text-primary-foreground font-semibold px-8 py-4 text-lg pulse-button hover:scale-105 transition-all duration-300"
+            onClick={() => navigate('/events')}
           >
             See Upcoming Events
           </Button>

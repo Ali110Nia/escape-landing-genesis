@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import { Menu, X, Linkedin } from 'lucide-react';
+import { Menu, X, Linkedin, Send } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import logo from '@/assets/logo.png';
+import logoWithText from '@/assets/logo-with-text.png';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
@@ -16,57 +20,69 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img 
-              src={logo} 
-              alt="The Escape Group" 
-              className="h-10 w-auto"
-            />
+            <Link to="/">
+              <img 
+                src={logoWithText} 
+                alt="The Escape Group" 
+                className="h-10 w-auto"
+              />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <a
-                href="#home"
-                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+              <Link
+                to="/"
+                className={`transition-colors duration-200 font-medium ${
+                  isActive('/') ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
               >
                 Home
-              </a>
-              <a
-                href="#events"
-                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+              </Link>
+              <Link
+                to="/events"
+                className={`transition-colors duration-200 font-medium ${
+                  isActive('/events') ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
               >
                 Events
-              </a>
-              <a
-                href="#testimonials"
-                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+              </Link>
+              <Link
+                to="/testimonials"
+                className={`transition-colors duration-200 font-medium ${
+                  isActive('/testimonials') ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
               >
                 Testimonials
-              </a>
+              </Link>
             </div>
           </div>
 
           {/* Social Icons - Desktop */}
           <div className="hidden md:flex items-center space-x-4">
             <a
-              href="#linkedin"
+              href="https://linkedin.com/company/the-escape-group"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors duration-200"
               aria-label="LinkedIn"
             >
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href="#telegram"
+              href="https://t.me/theescapegroup"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors duration-200"
               aria-label="Telegram"
             >
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.787l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
-              </svg>
+              <Send className="h-5 w-5" />
             </a>
             <a
-              href="#instagram"
+              href="https://instagram.com/theescapegroup"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors duration-200"
               aria-label="Instagram"
             >
@@ -98,48 +114,58 @@ const Navigation = () => {
       {isOpen && (
         <div className="md:hidden border-t border-border">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background/95 backdrop-blur">
-            <a
-              href="#home"
-              className="block px-3 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium"
+            <Link
+              to="/"
+              className={`block px-3 py-2 transition-colors duration-200 font-medium ${
+                isActive('/') ? 'text-primary' : 'text-foreground hover:text-primary'
+              }`}
               onClick={() => setIsOpen(false)}
             >
               Home
-            </a>
-            <a
-              href="#events"
-              className="block px-3 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium"
+            </Link>
+            <Link
+              to="/events"
+              className={`block px-3 py-2 transition-colors duration-200 font-medium ${
+                isActive('/events') ? 'text-primary' : 'text-foreground hover:text-primary'
+              }`}
               onClick={() => setIsOpen(false)}
             >
               Events
-            </a>
-            <a
-              href="#testimonials"
-              className="block px-3 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium"
+            </Link>
+            <Link
+              to="/testimonials"
+              className={`block px-3 py-2 transition-colors duration-200 font-medium ${
+                isActive('/testimonials') ? 'text-primary' : 'text-foreground hover:text-primary'
+              }`}
               onClick={() => setIsOpen(false)}
             >
               Testimonials
-            </a>
+            </Link>
             
             {/* Mobile Social Icons */}
             <div className="flex items-center space-x-4 px-3 py-4">
               <a
-                href="#linkedin"
+                href="https://linkedin.com/company/the-escape-group"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="#telegram"
+                href="https://t.me/theescapegroup"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
                 aria-label="Telegram"
               >
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.787l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
-                </svg>
+                <Send className="h-5 w-5" />
               </a>
               <a
-                href="#instagram"
+                href="https://instagram.com/theescapegroup"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
                 aria-label="Instagram"
               >
